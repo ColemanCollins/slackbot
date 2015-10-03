@@ -37,8 +37,6 @@ class MessageDispatcher(object):
                     reply += '```\n%s\n```' % traceback.format_exc()
                     self._client.rtm_send_message(msg['channel'], reply)
 
-        if not responded and category == 'respond_to':
-            self._default_reply(msg)
 
     def _on_new_message(self, msg):
         # ignore edits
@@ -93,15 +91,6 @@ class MessageDispatcher(object):
                     continue
                 self._on_new_message(event)
             time.sleep(1)
-
-    def _default_reply(self, msg):
-        default_reply = [
-            u'Bad command "%s", You can ask me one of the following questions:\n' % msg['text'],
-        ]
-        default_reply += [u'    • `{}`'.format(p.pattern) for p in self._plugins.commands['respond_to'].iterkeys()]
-
-        self._client.rtm_send_message(msg['channel'],
-                                     '\n'.join(to_utf8(default_reply)))
 
 
 class Message(object):

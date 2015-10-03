@@ -6,7 +6,7 @@ PLUGINS = [
     'slackbot.plugins',
 ]
 
-# API_TOKEN = '###token###'
+API_TOKEN = 'lol-jk-no-way'
 
 '''
 If you use Slack Web API to send messages (with send_webapi() or reply_webapi()),
